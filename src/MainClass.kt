@@ -2,9 +2,29 @@
 fun main(args : Array<String>) {
     println("Hello fuckin' world")
     basics()
+    println("\n")
+    arrays()
 }
 
 private fun arrays() {
+    var myArray = arrayOf(1, 1.23, "Doge", false, 'C')
+    println(myArray[2])
+    myArray[1] = 3.14
+    println("Array length : ${myArray.size }")
+    println("Is array contents element : ${myArray.contains("Doge")}")
+
+    // part of myArray:
+    var partArray = myArray.copyOfRange(3, myArray.size - 1)
+
+    println("First element of array : ${myArray.first()}")
+    println("Index of Doge : ${myArray.indexOf("Doge")}")
+
+    // create square array, which elements is square of it's index:
+    var squareArray = Array(5, {x -> x * x})
+    println("squareArray second element : ${squareArray[2]}")
+
+    // predefined array of ints :
+    val integerArray: Array<Int> = arrayOf(1, 2, 3)
 
 }
 
