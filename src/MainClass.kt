@@ -12,7 +12,47 @@ fun main(args: Array<String>) {
     conditionalsOperators()
     println("\n")
     looping()
+    println("\n")
+    functions()
+}
 
+private fun functions() {
+    //oneliner function without return:
+    fun add(num1: Int, num2: Int): Int = num1 + num2
+    println("5 + 4 = ${add(5, 4)}")
+
+    //oneliner function with default values (works without return type too):
+    fun substract(num1: Int = 1, num2: Int = 1) = num1 - num2
+    println("5 - 4 = ${substract(5, 4)}")
+
+    //parameter order is not important if you name arguments:
+    println("4 - 5 = ${substract(num2 = 5, num1 = 4)}")
+
+    //String formatting function without returning anything (void):
+    fun sayHello(name: String): Unit = println("Hello $name")
+    sayHello("Les Paul")
+
+    //function, that returns two results:
+    val (two, three) = nextTwo(1)
+    println("1, $two, $three")
+
+    //we also can send variable number of parameters ("vararg):
+    println("Sum : ${getSum(1, 2, 3, 4, 5, 6, 7, 8)}")
+
+    //creating value with inner function:
+    val multiply = { num1: Int, num2: Int -> num1 * num2 }
+    println("Multiply 5 * 6: ${multiply(5, 6)}")
+
+}
+
+private fun getSum(vararg nums: Int): Int {
+    var numSum = 0
+    nums.forEach { n -> numSum += n }
+    return numSum
+}
+
+private fun nextTwo(number: Int): Pair<Int, Int> {
+    return Pair(number + 1, number + 2)
 }
 
 private fun looping() {
