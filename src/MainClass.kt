@@ -1,5 +1,7 @@
 import java.util.*
 
+// https://www.youtube.com/watch?v=H_oGi8uuDpA
+
 fun main(args: Array<String>) {
     println("Hello fuckin' world")
     println("\n")
@@ -14,7 +16,61 @@ fun main(args: Array<String>) {
     looping()
     println("\n")
     functions()
+    println("\n")
+    highOrderFunctions()
+    println("\n")
+    collectionOperators()
 }
+
+private fun collectionOperators() {
+    val numList2 = 1..20
+
+    //sum of all elements in a list:
+    val listSum = numList2.reduce { x, y -> x + y }
+    println("Reduce sum : $listSum")
+
+    //fold is like reduce, but start from the initial value:
+    val listSum2 = numList2.fold(5) { x, y -> x + y }
+    println("Fold sum : $listSum2")
+
+    //find any evens in a list:
+    println("Evens : ${numList2.any { it % 2 == 0 }}")
+
+    //check if all of them are evens:
+    println("All evens are : ${numList2.all { it % 2 == 0 }}")
+
+    //found all values that greater then 3:
+    val greaterThen3 = numList2.filter { it > 3 }
+    greaterThen3.forEach { n -> println(">3 : $n") }
+
+    //maps:
+    val times7 = numList2.map { it * 7 }
+    times7.forEach { n -> println("times7 : $n") }
+}
+
+private fun highOrderFunctions() {
+    println("filter even values : ")
+    val numList = 1..20
+    val evenList = numList.filter { it % 2 == 0 }
+    evenList.forEach { n -> println(n) }
+
+    //function that generates functions:
+    val multiply3 = makeMathFunction(3)
+    println("3 * 5 = ${multiply3(5)}")
+
+    //passing functions as arguments:
+    val multiply2 = { num1: Int -> num1 * 2 }
+    val newNumList = arrayOf(1, 2, 3, 4, 5, 6, 7, 8)
+    mathOnList(myFunc = multiply2, numList = newNumList)
+}
+
+fun mathOnList(numList: Array<Int>, myFunc: (num: Int) -> Int) {
+    for (num in numList) {
+        println("mathOnList : ${myFunc(num)}")
+    }
+}
+
+fun makeMathFunction(num1: Int): (Int) -> Int = { num2 -> num1 * num2 }
 
 private fun functions() {
     //oneliner function without return:
