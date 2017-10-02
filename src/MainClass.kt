@@ -20,6 +20,66 @@ fun main(args: Array<String>) {
     highOrderFunctions()
     println("\n")
     collectionOperators()
+    println("\n")
+    someCollections()
+    println("\n")
+    maps()
+    println("\n")
+    classes()
+
+}
+
+private fun classes() {
+    val bowser = Animal("Bowser", 22.2, 34.0)
+    bowser.getInfo()
+}
+
+open class Animal(val name: String, var height: Double, var weight: Double) {
+    init {
+        //check if there is decimal value in the string:
+        val regex = Regex(".*\\d+.*")
+        require(!name.matches(regex)) { "Animal name cannot contain numbers" }
+        require(height > 0) { "Height must be more the 0" }
+        require(weight > 0) { "Weight must be more the 0" }
+    }
+
+    open fun getInfo(): Unit {
+        println("$name is $height tall and weights $weight")
+    }
+}
+
+private fun maps() {
+    val map1 = mutableMapOf<Int, Any?>()
+    val map2 = mutableMapOf(1 to "some string", 2 to 35.4)
+
+    map1[1] = "some string for map1"
+    map1[2] = 23
+    map1.put(3, "Pittsburgh")
+    map1.remove(2)
+    for ((x, y) in map1) {
+        println("Key : $x Value : $y")
+    }
+}
+
+private fun someCollections() {
+    //mutable list:
+    var list1: MutableList<Int> = mutableListOf(1, 2, 3, 4, 5)
+    //immutable list:
+    val list2: List<Int> = listOf(1, 2, 3)
+
+    //adding element to mutable list:
+    list1.add(6)
+
+    //get first, last  and specific item from list:
+    println("first element of list1 : ${list1.first()}")
+    println("last element of list1 : ${list1.last()}")
+    println("item on second index : ${list1[2]}")
+    println("item on second index : ${list1.get(2)}")
+
+    //sublist:
+    var list3 = list1.subList(0, 3)
+    println("sublist from 0 to 3 of list1 : $list3")
+
 }
 
 private fun collectionOperators() {
